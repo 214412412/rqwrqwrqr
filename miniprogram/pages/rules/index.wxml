@@ -1,0 +1,93 @@
+<view class="container">
+  <view class="header">
+    <text class="title">📖 游戏规则</text>
+  </view>
+
+  <view class="rules-content">
+    <view class="rule-section">
+      <text class="section-title">🎯 游戏目标</text>
+      <view class="section-content">
+        <text class="rule-text">在 9×9 的格子中填入数字 1-9，使得每行、每列、每个 3×3 宫格内的数字都不重复。</text>
+      </view>
+    </view>
+
+    <view class="rule-section">
+      <text class="section-title">📝 基本规则</text>
+      <view class="section-content">
+        <view class="rule-item">
+          <text class="rule-number">1</text>
+          <text class="rule-text">每行必须包含数字 1-9，且不能重复</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">2</text>
+          <text class="rule-text">每列必须包含数字 1-9，且不能重复</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">3</text>
+          <text class="rule-text">每个 3×3 的宫格内必须包含数字 1-9，且不能重复</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="rule-section">
+      <text class="section-title">🎮 游戏操作</text>
+      <view class="section-content">
+        <view class="rule-item">
+          <text class="rule-number">1</text>
+          <text class="rule-text">点击空格选中该格子</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">2</text>
+          <text class="rule-text">使用下方数字键盘输入数字</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">3</text>
+          <text class="rule-text">点击 ✕ 按钮清除当前格子的数字</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="rule-section">
+      <text class="section-title">🏆 计分规则</text>
+      <view class="section-content">
+        <view class="rule-item">
+          <text class="rule-number">•</text>
+          <text class="rule-text">基础分：简单 1000 分，中等 2000 分，困难 3000 分</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">•</text>
+          <text class="rule-text">时间奖励：(600秒 - 用时) × 2 分</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">•</text>
+          <text class="rule-text">错误惩罚：每次错误扣 100 分</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="rule-section">
+      <text class="section-title">💡 技巧提示</text>
+      <view class="section-content">
+        <view class="rule-item">
+          <text class="rule-number">•</text>
+          <text class="rule-text">先从数字多的行、列或宫格开始填</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">•</text>
+          <text class="rule-text">利用排除法确定某个格子只能填某个数字</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">•</text>
+          <text class="rule-text">遇到困难时可以尝试猜测，但要注意错误惩罚</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-btn" bindtap="goHome">
+      <text class="footer-btn-icon">🏠</text>
+      <text class="footer-btn-text">返回主页</text>
+    </view>
+  </view>
+</view>

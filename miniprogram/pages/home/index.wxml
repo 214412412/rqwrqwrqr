@@ -1,0 +1,44 @@
+<view class="container">
+  <view class="logo">
+    <text class="logo-text">数独游戏</text>
+    <text class="logo-subtitle">SUDOKU</text>
+  </view>
+  
+  <view class="menu">
+    <view class="menu-item primary" bindtap="startGame">
+      <text class="menu-icon">🎮</text>
+      <text class="menu-text">开始游戏</text>
+    </view>
+    
+    <view class="menu-item" bindtap="goToLeaderboard">
+      <text class="menu-icon">🏆</text>
+      <text class="menu-text">排行榜</text>
+    </view>
+    
+    <view class="menu-item" bindtap="goToRules">
+      <text class="menu-icon">📖</text>
+      <text class="menu-text">游戏规则</text>
+    </view>
+  </view>
+
+  <view class="difficulty-modal" wx:if="{{showDifficulty}}">
+    <view class="modal-mask" bindtap="closeDifficulty"></view>
+    <view class="modal-content">
+      <text class="modal-title">选择难度</text>
+      <view class="difficulty-list">
+        <view class="difficulty-item" bindtap="selectDifficulty('easy')">
+          <text class="difficulty-name">简单</text>
+          <text class="difficulty-desc">适合新手</text>
+        </view>
+        <view class="difficulty-item" bindtap="selectDifficulty('medium')">
+          <text class="difficulty-name">中等</text>
+          <text class="difficulty-desc">挑战自我</text>
+        </view>
+        <view class="difficulty-item" bindtap="selectDifficulty('hard')">
+          <text class="difficulty-name">困难</text>
+          <text class="difficulty-desc">高手进阶</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,89 @@
+<view class="container">
+  <view class="header">
+    <view class="header-left">
+      <text class="difficulty-tag">{{difficultyText}}</text>
+    </view>
+    <view class="header-center">
+      <text class="timer">{{formatTime(timeUsed)}}</text>
+    </view>
+    <view class="header-right">
+      <text class="score">得分: {{score}}</text>
+    </view>
+  </view>
+
+  <view class="sudoku-board">
+    <view class="board-grid">
+      <view 
+        wx:for="{{board}}" 
+        wx:key="row" 
+        class="board-row"
+      >
+        <view 
+          wx:for="item" 
+          wx:key="col" 
+          class="cell {{getCellClass(row, col)}}"
+          bindtap="onCellTap"
+          data-row="{{row}}"
+          data-col="{{col}}"
+        >
+          <text class="cell-value">{{board[row][col] || ''}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="number-pad">
+    <view 
+      wx:for="{{[1,2,3,4,5,6,7,8,9]}}" 
+      wx:key="num"
+      class="num-btn"
+      bindtap="onNumberTap"
+      data-num="{{item}}"
+    >
+      <text class="num-text">{{item}}</text>
+    </view>
+    <view class="num-btn erase" bindtap="onEraseTap">
+      <text class="num-text">✕</text>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-btn" bindtap="goHome">
+      <text class="footer-btn-icon">🏠</text>
+      <text class="footer-btn-text">主页</text>
+    </view>
+    <view class="footer-btn primary" bindtap="restartGame">
+      <text class="footer-btn-icon">🔄</text>
+      <text class="footer-btn-text">重新开始</text>
+    </view>
+  </view>
+
+  <view class="game-over-modal" wx:if="{{showGameOver}}">
+    <view class="modal-mask"></view>
+    <view class="modal-content">
+      <text class="modal-title">🎉 恭喜完成！</text>
+      <view class="result-info">
+        <view class="result-item">
+          <text class="result-label">难度</text>
+          <text class="result-value">{{difficultyText}}</text>
+        </view>
+        <view class="result-item">
+          <text class="result-label">用时</text>
+          <text class="result-value">{{formatTime(finalTime)}}</text>
+        </view>
+        <view class="result-item">
+          <text class="result-label">错误次数</text>
+          <text class="result-value">{{mistakes}}</text>
+        </view>
+        <view class="result-item highlight">
+          <text class="result-label">最终得分</text>
+          <text class="result-value">{{finalScore}}</text>
+        </view>
+      </view>
+      <view class="modal-buttons">
+        <view class="modal-btn" bindtap="goHome">返回主页</view>
+        <view class="modal-btn primary" bindtap="restartGame">再来一局</view>
+      </view>
+    </view>
+  </view>
+</view>

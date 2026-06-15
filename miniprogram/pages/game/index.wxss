@@ -1,0 +1,287 @@
+.container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  margin-bottom: 20rpx;
+}
+
+.difficulty-tag {
+  background: #667eea;
+  color: #fff;
+  padding: 12rpx 24rpx;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+}
+
+.timer {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  font-family: monospace;
+}
+
+.score {
+  font-size: 32rpx;
+  color: #667eea;
+  font-weight: bold;
+}
+
+.sudoku-board {
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+  margin-bottom: 20rpx;
+}
+
+.board-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.board-row {
+  display: flex;
+}
+
+.cell {
+  width: 12.5%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1rpx solid #e0e0e0;
+  transition: all 0.2s ease;
+}
+
+.cell:nth-child(3n) {
+  border-right: 3rpx solid #333;
+}
+
+.board-row:nth-child(3n) .cell {
+  border-bottom: 3rpx solid #333;
+}
+
+.cell.selected {
+  background: #e8f4fd;
+}
+
+.cell.editable {
+  background: #fff;
+}
+
+.cell.editable:active {
+  background: #f0f0f0;
+}
+
+.cell.error {
+  background: #ffeaea;
+}
+
+.cell-value {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.cell.editable .cell-value {
+  color: #667eea;
+}
+
+.cell.error .cell-value {
+  color: #e74c3c;
+}
+
+.number-pad {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+  margin-bottom: 20rpx;
+}
+
+.num-btn {
+  width: calc(100% / 5 - 12.8rpx);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  border-radius: 16rpx;
+  transition: all 0.2s ease;
+}
+
+.num-btn:active {
+  background: #667eea;
+}
+
+.num-btn:active .num-text {
+  color: #fff;
+}
+
+.num-btn.erase {
+  background: #ffeaea;
+}
+
+.num-btn.erase:active {
+  background: #e74c3c;
+}
+
+.num-text {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.footer {
+  display: flex;
+  gap: 20rpx;
+}
+
+.footer-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.footer-btn:active {
+  transform: scale(0.98);
+}
+
+.footer-btn.primary {
+  background: #667eea;
+}
+
+.footer-btn.primary .footer-btn-text {
+  color: #fff;
+}
+
+.footer-btn-icon {
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+
+.footer-btn-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.game-over-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 32rpx;
+  padding: 48rpx;
+  width: 85%;
+  max-width: 500rpx;
+}
+
+.modal-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 40rpx;
+  display: block;
+}
+
+.result-info {
+  margin-bottom: 40rpx;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.result-item.highlight {
+  background: #f8f9ff;
+  margin: 16rpx -20rpx;
+  padding: 24rpx 20rpx;
+  border-radius: 16rpx;
+}
+
+.result-label {
+  font-size: 32rpx;
+  color: #999;
+}
+
+.result-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.result-item.highlight .result-value {
+  font-size: 40rpx;
+  color: #667eea;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 20rpx;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 24rpx;
+  text-align: center;
+  background: #f5f5f5;
+  border-radius: 16rpx;
+  font-size: 32rpx;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.modal-btn:active {
+  transform: scale(0.98);
+}
+
+.modal-btn.primary {
+  background: #667eea;
+  color: #fff;
+}

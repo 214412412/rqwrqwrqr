@@ -1,0 +1,73 @@
+<view class="container">
+  <view class="header">
+    <text class="title">🏆 排行榜</text>
+  </view>
+
+  <view class="tabs">
+    <view 
+      class="tab {{activeTab === 'all' ? 'active' : ''}}" 
+      bindtap="setTab('all')"
+    >
+      <text>全部</text>
+    </view>
+    <view 
+      class="tab {{activeTab === 'easy' ? 'active' : ''}}" 
+      bindtap="setTab('easy')"
+    >
+      <text>简单</text>
+    </view>
+    <view 
+      class="tab {{activeTab === 'medium' ? 'active' : ''}}" 
+      bindtap="setTab('medium')"
+    >
+      <text>中等</text>
+    </view>
+    <view 
+      class="tab {{activeTab === 'hard' ? 'active' : ''}}" 
+      bindtap="setTab('hard')"
+    >
+      <text>困难</text>
+    </view>
+  </view>
+
+  <view class="leaderboard-list" wx:if="{{scores.length > 0}}">
+    <view 
+      wx:for="{{scores}}" 
+      wx:key="_id" 
+      class="leaderboard-item"
+    >
+      <view class="rank">
+        <text class="rank-num {{getRankClass(index)}}">{{index + 1}}</text>
+      </view>
+      <view class="score-info">
+        <view class="score-row">
+          <text class="score-value">{{item.score}}</text>
+          <text class="difficulty-badge">{{getDifficultyText(item.difficulty)}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="time">⏱️ {{formatTime(item.timeUsed)}}</text>
+          <text class="mistakes">❌ {{item.mistakes}}次</text>
+        </view>
+      </view>
+      <view class="date">
+        <text>{{formatDate(item.createTime)}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text class="empty-icon">📊</text>
+    <text class="empty-text">暂无记录</text>
+    <text class="empty-hint">完成一局数独游戏后，分数会自动记录在这里</text>
+    <view class="empty-btn" bindtap="goToGame">
+      <text>开始游戏</text>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-btn" bindtap="goHome">
+      <text class="footer-btn-icon">🏠</text>
+      <text class="footer-btn-text">返回主页</text>
+    </view>
+  </view>
+</view>

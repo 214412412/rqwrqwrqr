@@ -1,0 +1,30 @@
+# 微信开发者工具配置
+project.private.config.json
+*.log
+
+# Node.js
+node_modules/
+package-lock.json
+yarn.lock
+
+# 构建产物
+dist/
+build/
+*.min.js
+*.min.css
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 云开发配置
+cloudfunctions/**/node_modules/
+cloudfunctions/**/.git/
