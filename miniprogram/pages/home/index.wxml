@@ -26,15 +26,15 @@
     <view class="modal-content">
       <text class="modal-title">选择难度</text>
       <view class="difficulty-list">
-        <view class="difficulty-item" bindtap="selectDifficulty('easy')">
+        <view class="difficulty-item" bindtap="selectDifficulty" data-difficulty="easy">
           <text class="difficulty-name">简单</text>
           <text class="difficulty-desc">适合新手</text>
         </view>
-        <view class="difficulty-item" bindtap="selectDifficulty('medium')">
+        <view class="difficulty-item" bindtap="selectDifficulty" data-difficulty="medium">
           <text class="difficulty-name">中等</text>
           <text class="difficulty-desc">挑战自我</text>
         </view>
-        <view class="difficulty-item" bindtap="selectDifficulty('hard')">
+        <view class="difficulty-item" bindtap="selectDifficulty" data-difficulty="hard">
           <text class="difficulty-name">困难</text>
           <text class="difficulty-desc">高手进阶</text>
         </view>

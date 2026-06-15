@@ -15,7 +15,8 @@ Page({
     });
   },
 
-  selectDifficulty(difficulty) {
+  selectDifficulty(e) {
+    const difficulty = e.currentTarget.dataset.difficulty;
     this.setData({
       showDifficulty: false
     });
