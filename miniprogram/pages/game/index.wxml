@@ -15,17 +15,19 @@
     <view class="board-grid">
       <view 
         wx:for="{{board}}" 
-        wx:key="index" 
+        wx:key="rowIndex" 
+        wx:for-index="rowIndex"
         class="board-row"
       >
         <view 
           wx:for="{{item}}" 
           wx:for-item="cellValue"
-          wx:key="index" 
-          class="cell {{cellClasses[parentIndex]?.[index] || ''}}"
+          wx:key="colIndex"
+          wx:for-index="colIndex"
+          class="cell {{cellClasses[rowIndex] && cellClasses[rowIndex][colIndex] ? cellClasses[rowIndex][colIndex] : ''}}"
           bindtap="onCellTap"
-          data-row="{{parentIndex}}"
-          data-col="{{index}}"
+          data-row="{{rowIndex}}"
+          data-col="{{colIndex}}"
         >
           <text class="cell-value">{{cellValue || ''}}</text>
         </view>
