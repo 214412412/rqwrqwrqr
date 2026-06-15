@@ -4,7 +4,7 @@
       <text class="difficulty-tag">{{difficultyText}}</text>
     </view>
     <view class="header-center">
-      <text class="timer">{{formatTime(timeUsed)}}</text>
+      <text class="timer">{{formattedTime}}</text>
     </view>
     <view class="header-right">
       <text class="score">得分: {{score}}</text>
@@ -15,18 +15,19 @@
     <view class="board-grid">
       <view 
         wx:for="{{board}}" 
-        wx:key="row" 
+        wx:key="index" 
         class="board-row"
       >
         <view 
-          wx:for="item" 
-          wx:key="col" 
-          class="cell {{getCellClass(row, col)}}"
+          wx:for="{{item}}" 
+          wx:for-item="cellValue"
+          wx:key="index" 
+          class="cell {{cellClasses[parentIndex]?.[index] || ''}}"
           bindtap="onCellTap"
-          data-row="{{row}}"
-          data-col="{{col}}"
+          data-row="{{parentIndex}}"
+          data-col="{{index}}"
         >
-          <text class="cell-value">{{board[row][col] || ''}}</text>
+          <text class="cell-value">{{cellValue || ''}}</text>
         </view>
       </view>
     </view>
@@ -69,7 +70,7 @@
         </view>
         <view class="result-item">
           <text class="result-label">用时</text>
-          <text class="result-value">{{formatTime(finalTime)}}</text>
+          <text class="result-value">{{formattedFinalTime}}</text>
         </view>
         <view class="result-item">
           <text class="result-label">错误次数</text>

@@ -9,12 +9,15 @@ Page({
     difficultyText: '中等',
     selectedCell: null,
     timeUsed: 0,
+    formattedTime: '00:00',
     score: 0,
     mistakes: 0,
     showGameOver: false,
     finalTime: 0,
+    formattedFinalTime: '00:00',
     finalScore: 0,
-    errorCells: []
+    errorCells: [],
+    cellClasses: []
   },
 
   timer: null,
@@ -47,13 +50,36 @@ Page({
       initialBoard,
       selectedCell: null,
       timeUsed: 0,
+      formattedTime: '00:00',
       score: 0,
       mistakes: 0,
       showGameOver: false,
-      errorCells: []
+      errorCells: [],
+      cellClasses: this.generateCellClasses(board, initialBoard, null, [])
     });
 
     this.startTimer();
+  },
+
+  generateCellClasses(board, initialBoard, selectedCell, errorCells) {
+    const classes = [];
+    for (let row = 0; row < 9; row++) {
+      classes[row] = [];
+      for (let col = 0; col < 9; col++) {
+        let cls = '';
+        if (initialBoard[row][col] === 0) {
+          cls += 'editable';
+        }
+        if (selectedCell && selectedCell.row === row && selectedCell.col === col) {
+          cls += ' selected';
+        }
+        if (errorCells.includes(`${row}-${col}`)) {
+          cls += ' error';
+        }
+        classes[row][col] = cls.trim();
+      }
+    }
+    return classes;
   },
 
   startTimer() {
@@ -61,8 +87,11 @@ Page({
       clearInterval(this.timer);
     }
     this.timer = setInterval(() => {
+      const newTimeUsed = this.data.timeUsed + 1;
+      const formattedTime = this.formatTime(newTimeUsed);
       this.setData({
-        timeUsed: this.data.timeUsed + 1
+        timeUsed: newTimeUsed,
+        formattedTime
       });
       this.updateScore();
     }, 1000);
@@ -90,8 +119,15 @@ Page({
     const colNum = parseInt(col);
 
     if (this.data.initialBoard[rowNum][colNum] === 0) {
+      const selectedCell = { row: rowNum, col: colNum };
       this.setData({
-        selectedCell: { row: rowNum, col: colNum }
+        selectedCell,
+        cellClasses: this.generateCellClasses(
+          this.data.board,
+          this.data.initialBoard,
+          selectedCell,
+          this.data.errorCells
+        )
       });
     }
   },
@@ -140,31 +176,17 @@ Page({
     this.setData({
       board: newBoard,
       errorCells: newErrorCells,
-      mistakes: newMistakes
+      mistakes: newMistakes,
+      cellClasses: this.generateCellClasses(
+        newBoard,
+        this.data.initialBoard,
+        this.data.selectedCell,
+        newErrorCells
+      )
     });
 
     this.updateScore();
     this.checkWin();
-  },
-
-  getCellClass(row, col) {
-    const classes = [];
-    
-    if (this.data.initialBoard[row][col] === 0) {
-      classes.push('editable');
-    }
-
-    if (this.data.selectedCell && 
-        this.data.selectedCell.row === row && 
-        this.data.selectedCell.col === col) {
-      classes.push('selected');
-    }
-
-    if (this.data.errorCells.includes(`${row}-${col}`)) {
-      classes.push('error');
-    }
-
-    return classes.join(' ');
   },
 
   formatTime(seconds) {
@@ -192,6 +214,7 @@ Page({
     this.setData({
       showGameOver: true,
       finalTime: this.data.timeUsed,
+      formattedFinalTime: this.formatTime(this.data.timeUsed),
       finalScore
     });
 
