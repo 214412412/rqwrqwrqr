@@ -37,9 +37,9 @@
 }
 
 .sudoku-board {
-  padding: 20rpx;
+  padding: 30rpx;
   background: #fff;
-  border-radius: 20rpx;
+  border-radius: 24rpx;
   box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
   margin-bottom: 20rpx;
 }
@@ -54,21 +54,21 @@
 }
 
 .cell {
-  width: 12.5%;
+  width: 11.11%;
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1rpx solid #e0e0e0;
+  border: 2rpx solid #e0e0e0;
   transition: all 0.2s ease;
 }
 
 .cell:nth-child(3n) {
-  border-right: 3rpx solid #333;
+  border-right: 4rpx solid #333;
 }
 
 .board-row:nth-child(3n) .cell {
-  border-bottom: 3rpx solid #333;
+  border-bottom: 4rpx solid #333;
 }
 
 .cell.selected {
@@ -88,7 +88,7 @@
 }
 
 .cell-value {
-  font-size: 36rpx;
+  font-size: 56rpx;
   font-weight: bold;
   color: #333;
 }
